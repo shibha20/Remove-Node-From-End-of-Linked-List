@@ -1,0 +1,28 @@
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:    
+        headbackup = head
+        lenlist = 0
+        while headbackup:
+            lenlist = lenlist+ 1
+            headbackup = headbackup.next      
+        removal = lenlist-n
+        counter = 1
+        newhead = head
+        while newhead:
+            if removal == 0:
+                return head.next
+            elif lenlist ==2 and n==1:
+                head.next = None
+                return head
+            elif counter == removal and newhead.next.next:              
+                newhead.next = newhead.next.next
+                return head
+            elif counter == removal and newhead.next.next is None:              
+                newhead.next = None
+                return head
+            else:
+                newhead = newhead.next
+                counter= counter+1
+        return None
+
+
